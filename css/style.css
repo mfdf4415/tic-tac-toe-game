@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+*::before, *::after {
+	box-sizing: border-box;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-transform: capitalize;
+    font-family: 'Fredoka One', cursive;
+    user-select: none;
+    transition: all .3s ease-in-out;
+}
+
+body {
+    height: 100vh;
+    background: #1FA2FF;
+    background: -webkit-linear-gradient(to left, #A6FFCB, #12D8FA, #1FA2FF);
+    background: linear-gradient(to bottom left, #A6FFCB, #12D8FA, #1FA2FF);
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    padding: 5rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container .turns {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.turns .turn {
+    z-index: 0;
+    font-size: 65px;
+    font-weight: bolder;
+    color: #FF1818;
+    background: #fff;
+    padding: .1rem 5rem;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.active::before {
+    content: '';
+    position: absolute;
+    z-index: -2;
+    left: -50%;
+    top: -50%;
+    width: 200%;
+    height: 200%;
+    background-color: #1FA2FF;
+    background-repeat: no-repeat;
+    background-size: 50% 50%, 50% 50%;
+    background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+    background-image: linear-gradient(#A6FFCB, #12D8FA, #1FA2FF), linear-gradient(#A6FFCB, #12D8FA, #1FA2FF);
+    animation: rotate 4s linear infinite;
+}
+
+.active::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: 6px;
+    top: 6px;
+    width: calc(100% - 12px);
+    height: calc(100% - 12px);
+    background: white;
+    border-radius: 20px;
+}
+
+@keyframes rotate {
+	100% {
+		transform: rotate(1turn);
+	}
+}
+
+.turns .turn:last-child {
+    color: #5463FF;
+}
+
+.container .box {
+    width: 320px;
+    height: 320px;
+    background: #fff;
+    margin: 4rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    border-radius: 20px;
+}
+
+.box.is-win {
+    font-size: 80px;
+    color: #fff;
+    text-align: center;
+    background: transparent;
+    animation-name: rotate;
+    animation-duration: 1s;
+}
+
+@keyframes rotate {
+    from{transform: rotate(0deg);}
+    to{transform: rotate(360deg);}
+}
+
+.box .cell {
+    border: 2px solid #9d9d9d;
+    cursor: pointer;
+    text-align: center;
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 104px;
+}
+
+.fill-x::after {
+    content: "X";
+    color: #FF1818;
+}
+
+.fill-o::after {
+    content: "o";
+    color: #5463FF;
+}
+
+.cell.fill-x , .cell.fill-o {
+    cursor: not-allowed;
+}
+
+
+
+.box .cell:nth-child(1) {
+    border-left: 0;
+    border-top: 0;
+}
+
+.box .cell:nth-child(2) {
+    border-top: 0;
+}
+
+.box .cell:nth-child(3) {
+    border-top: 0;
+    border-right: 0;
+}
+
+.box .cell:nth-child(4) {
+    border-left: 0;
+}
+
+.box .cell:nth-child(6) {
+    border-right: 0;
+}
+
+.box .cell:nth-child(7) {
+    border-left: 0;
+    border-bottom: 0;
+}
+
+.box .cell:nth-child(8) {
+    border-bottom: 0;
+}
+
+.box .cell:nth-child(9) {
+    border-bottom: 0;
+    border-right: 0;
+}
